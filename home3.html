@@ -1,40 +1,76 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Predict the status of your pump using machine learning.">
     <title>Pump Status Prediction</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
     <style>
+      /* Global styles */
+      html {
+        font-size: 16px;
+        line-height: 1.5;
+      }
+
       body {
         font-family: Arial, sans-serif;
         background-color: #f2f2f2;
         margin: 0;
         padding: 0;
+        color: #333;
       }
 
-      .container {
+      a {
+        color: #333;
+        text-decoration: none;
+      }
+
+      a:hover {
+        color: #666;
+      }
+
+      /* Header styles */
+      header {
+        background-color: #fff;
+        border-bottom: 1px solid #ddd;
+        padding: 20px;
+      }
+
+      .logo {
+        font-size: 24px;
+        font-weight: bold;
+        margin: 0;
+      }
+
+      /* Main content styles */
+      main {
         max-width: 800px;
         margin: 0 auto;
         padding: 20px;
-        background-color: #fff;
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
       }
 
       h1 {
         font-size: 36px;
         text-align: center;
-        color: #333;
         margin-top: 0;
       }
 
+      p {
+        margin-bottom: 20px;
+      }
+
+      /* Form styles */
       form {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-top: 20px;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
       }
 
       label {
         font-size: 18px;
+        display: block;
         margin-bottom: 10px;
         color: #333;
       }
@@ -77,16 +113,51 @@
       .error {
         font-size: 18px;
         text-align: center;
-        margin-top: 20px;
-        color: #ff0000;
-      }
-    </style>
+    margin-top: 20px;
+    color: #ff0000;
+  }
+
+  /* Footer styles */
+  footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+  }
+
+  /* Responsive styles */
+  @media screen and (max-width: 600px) {
+    .logo {
+      font-size: 20px;
+    }
+
+    h1 {
+      font-size: 28px;
+    }
+
+    label {
+      font-size: 16px;
+    }
+
+    input[type="text"] {
+      font-size: 14px;
+    }
+
+    button[type="submit"] {
+      font-size: 16px;
+      padding: 10px 15px;
+    }
+  }
+</style>
   </head>
   <body>
-    <div class="container">
-      <h1>Pump Status Prediction</h1>
+    <header>
+      <h1 class="logo">Pump Status Prediction</h1>
+    </header>
+    <main>
+      <p>Predict the status of your pump using machine learning. Simply enter the input values below and click the "Predict" button to see the predicted pump status.</p>
       <form method="post" action="{{ url_for('predict') }}">
-        <label for="tsv_input">Enter input values separated by tabs:</label>
+        <label for="tsv_input">Enter input values separated by tabs(Mean,Max,Kurtosis,Variance,Onenorm):</label>
         <input type="text" name="tsv_input" id="tsv_input" value="{{ tsv_input }}" placeholder="-1.98E-05\t6.976751804\t16.08709263\t0.11142514\t1331746.148">
         <button type="submit">Predict</button>
       </form>
@@ -101,6 +172,10 @@
           <p>{{ output1 }}</p>
         </div>
       {% endif %}
-    </div>
+    </main>
+    <footer>
+      <p>Contact us at <a href="tel:+60195801637">+60195801637</a> or <a href="mailto:info@pumpstatus.com">info@pumpstatus.com</a></p>
+      <p>123 Batu Pahat</p>
+    </footer>
   </body>
 </html>
