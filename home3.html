@@ -1,20 +1,106 @@
+<!DOCTYPE html>
 <html>
   <head>
     <title>Pump Status Prediction</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f2f2f2;
+        margin: 0;
+        padding: 0;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      h1 {
+        font-size: 36px;
+        text-align: center;
+        color: #333;
+        margin-top: 0;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 20px;
+      }
+
+      label {
+        font-size: 18px;
+        margin-bottom: 10px;
+        color: #333;
+      }
+
+      input[type="text"] {
+        font-size: 16px;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 600px;
+        margin-bottom: 20px;
+        background-color: #f2f2f2;
+        color: #333;
+      }
+
+      button[type="submit"] {
+        font-size: 18px;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        background-color: #333;
+        color: #fff;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      button[type="submit"]:hover {
+        background-color: #444;
+      }
+
+      .output {
+        font-size: 24px;
+        text-align: center;
+        margin-top: 20px;
+        color: #333;
+      }
+
+      .error {
+        font-size: 18px;
+        text-align: center;
+        margin-top: 20px;
+        color: #ff0000;
+      }
+    </style>
   </head>
   <body>
-    <h1>Pump Status Prediction</h1>
-    <form method="post" action="{{ url_for('predict') }}">
-      <label for="tsv_input">Enter input values separated by tabs:</label>
-      <input type="text" name="tsv_input" id="tsv_input" value="{{ tsv_input }}" placeholder="-1.98E-05\t6.976751804\t16.08709263\t0.11142514\t1331746.148">
-      <button type="submit">Predict</button>
-    </form>
-    {% if output1 and output2 %}
-      <p>{{ output1 }}</p>
-      <p>{{ output2 }}</p>
-    {% endif %}
-    {% if output1.startswith("Error:") %}
-      <p style="color:red">{{ output1 }}</p>
-    {% endif %}
+    <div class="container">
+      <h1>Pump Status Prediction</h1>
+      <form method="post" action="{{ url_for('predict') }}">
+        <label for="tsv_input">Enter input values separated by tabs:</label>
+        <input type="text" name="tsv_input" id="tsv_input" value="{{ tsv_input }}" placeholder="-1.98E-05\t6.976751804\t16.08709263\t0.11142514\t1331746.148">
+        <button type="submit">Predict</button>
+      </form>
+      {% if output1 and output2 %}
+        <div class="output">
+          <p>{{ output1 }}</p>
+          <p>{{ output2 }}</p>
+        </div>
+      {% endif %}
+      {% if output1.startswith("Error:") %}
+        <div class="error">
+          <p>{{ output1 }}</p>
+        </div>
+      {% endif %}
+    </div>
   </body>
 </html>
