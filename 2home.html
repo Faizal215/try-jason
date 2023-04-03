@@ -1,0 +1,19 @@
+<html>
+  <head>
+    <title>Pump Status Prediction</title>
+  </head>
+  <body>
+    <h1>Pump Status Prediction</h1>
+    <form method="post" action="{{ url_for('predict') }}">
+      <label for="input_str">Enter input in format {5.4, 10.1, 1.2, 4.5, 2.5}:</label>
+      <input type="text" name="input_str" id="input_str" value="{{ input_str }}" placeholder="{5.4, 10.1, 1.2, 4.5, 2.5}">
+      <button type="submit">Predict</button>
+    </form>
+    {% if output1 and output2 %}
+      <p>{{ output1 }}</p>
+      <p>{{ output2 }}</p>
+    {% elif output1 %}
+      <p>{{ output1 }}</p>
+    {% endif %}
+  </body>
+</html>
