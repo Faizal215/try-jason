@@ -1,0 +1,20 @@
+<html>
+  <head>
+    <title>Pump Status Prediction</title>
+  </head>
+  <body>
+    <h1>Pump Status Prediction</h1>
+    <form method="post" action="{{ url_for('predict') }}">
+      <label for="tsv_input">Enter input values separated by tabs:</label>
+      <input type="text" name="tsv_input" id="tsv_input" value="{{ tsv_input }}" placeholder="-1.98E-05\t6.976751804\t16.08709263\t0.11142514\t1331746.148">
+      <button type="submit">Predict</button>
+    </form>
+    {% if output1 and output2 %}
+      <p>{{ output1 }}</p>
+      <p>{{ output2 }}</p>
+    {% endif %}
+    {% if output1.startswith("Error:") %}
+      <p style="color:red">{{ output1 }}</p>
+    {% endif %}
+  </body>
+</html>
