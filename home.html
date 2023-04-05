@@ -1,24 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>Pump Diagnostic Tool</title>
+	<title>Pump Diagnostic System</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 <body>
-    <h1>Pump Diagnostic Tool</h1>
-    {% if error_msg %}
-        <div style="color: red">{{ error_msg }}</div>
-    {% endif %}
-    <form method="post" action="{{ url_for('predict') }}">
-        <label for="query">Enter pump diagnostic data in JSON format:</label><br>
-        <input type="text" id="query" name="query"><br>
-        <button type="submit">Predict</button>
-    </form>
-    <br>
-    <h3>Results:</h3>
-    {% if output1 %}
-        <p>{{ output1 }}</p>
-        <p>{{ output2 }}</p>
-    {% endif %}
+	<div class="container mt-3">
+		<h1>Pump Diagnostic System</h1>
+		<hr>
+		<form method="post" action="{{ url_for('predict') }}">
+			<div class="form-group">
+				<label for="query">Input JSON:</label>
+				<input type="text" class="form-control" id="query" name="query" placeholder='{"Mean":1.2,"Max":2.3,"Kurtosis":3.4,"Variance":4.5,"One Norm":5.6}' required>
+			</div>
+			<button type="submit" class="btn btn-primary">Predict</button>
+		</form>
+		<hr>
+		{% if output1 %}
+		<div class="alert alert-info">
+			<p>{{ output1 }}</p>
+			<p>{{ output2 }}</p>
+		</div>
+		{% endif %}
+		{% if error_msg %}
+		<div class="alert alert-danger">
+			<p>{{ error_msg }}</p>
+		</div>
+		{% endif %}
+	</div>
 </body>
 </html>
